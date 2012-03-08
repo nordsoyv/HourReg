@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Timeforing" Class="TimeforingDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=wdtest;Initial Catalog=TimeForing;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TimeforingConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="Code" Member="Codes">
+    <Type Name="Code">
+      <Column Name="CodeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CodeNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Code_Task" Member="Tasks" ThisKey="CodeID" OtherKey="CodeID" Type="Task" />
+      <Association Name="Project_Code" Member="Project" ThisKey="ProjectID" OtherKey="ProjectID" Type="Project" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="User" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="User_HourReg" Member="HourRegs" ThisKey="UserID" OtherKey="UserID" Type="HourReg" />
+      <Association Name="User_Task" Member="Tasks" ThisKey="UserID" OtherKey="UserID" Type="Task" />
+    </Type>
+  </Table>
+  <Table Name="HourReg" Member="HourRegs">
+    <Type Name="HourReg">
+      <Column Name="HourRegID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SprintID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TimeSpent" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TimeLeft" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="User_HourReg" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Task_HourReg" Member="Task" ThisKey="TaskID" OtherKey="TaskID" Type="Task" IsForeignKey="true" />
+      <Association Name="Sprint_HourReg" Member="Sprint" ThisKey="SprintID" OtherKey="SprintID" Type="Sprint" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Project" Member="Projects">
+    <Type Name="Project">
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Project_Code" Member="Codes" ThisKey="ProjectID" OtherKey="ProjectID" Type="Code" />
+    </Type>
+  </Table>
+  <Table Name="Stories">
+    <Type Name="Story">
+      <Column Name="StoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="Story_Task" Member="Tasks" ThisKey="StoryID" OtherKey="StoryID" Type="Task" />
+    </Type>
+  </Table>
+  <Table Name="Task" Member="Tasks">
+    <Type Name="Task">
+      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TimeLeft" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SprintID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="OrgEstimate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Task_HourReg" Member="HourRegs" ThisKey="TaskID" OtherKey="TaskID" Type="HourReg" />
+      <Association Name="Code_Task" Member="Code" ThisKey="CodeID" OtherKey="CodeID" Type="Code" IsForeignKey="true" />
+      <Association Name="Story_Task" Member="Story" ThisKey="StoryID" OtherKey="StoryID" Type="Story" IsForeignKey="true" />
+      <Association Name="User_Task" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Sprint_Task" Member="Sprint" ThisKey="SprintID" OtherKey="SprintID" Type="Sprint" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sprint" Member="Sprints">
+    <Type Name="Sprint">
+      <Column Name="SprintID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="datetime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="datetime" CanBeNull="true" />
+      <Column Name="HoursInSprint" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Archived" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Sprint_HourReg" Member="HourRegs" ThisKey="SprintID" OtherKey="SprintID" Type="HourReg" />
+      <Association Name="Sprint_Task" Member="Tasks" ThisKey="SprintID" OtherKey="SprintID" Type="Task" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,237 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DA117F6D-5FD7-45F4-8B4E-4E4D380C458A}</ProjectGuid>
+    <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TimeForing</RootNamespace>
+    <AssemblyName>TimeForing</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Home|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\SelectListMaker.cs" />
+    <Compile Include="Controllers\CodeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\StoriesController.cs" />
+    <Compile Include="Common\Util.cs" />
+    <Compile Include="Models\Story.cs" />
+    <Compile Include="Models\Timeforing.cs">
+      <DependentUpon>Timeforing.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BurndownReportViewModel.cs" />
+    <Compile Include="ViewModels\CodeFormViewModel.cs" />
+    <Compile Include="Controllers\ControllerHelpers.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="ViewModels\IndexViewModel.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="ViewModels\SelectTasksViewModel.cs" />
+    <Compile Include="Controllers\SprintController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="ViewModels\StoriesViewModel.cs" />
+    <Compile Include="ViewModels\TaskFormViewModel.cs" />
+    <Compile Include="Controllers\TimeRegController.cs" />
+    <Compile Include="ViewModels\TaskIndexViewModel.cs" />
+    <Compile Include="ViewModels\TaskOversiktViewModel.cs" />
+    <Compile Include="ViewModels\TimeOversiktViewModel.cs" />
+    <Compile Include="ViewModels\TimeRegViewModel.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Code.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\RuleViolation.cs" />
+    <Compile Include="Models\Sprint.cs" />
+    <Compile Include="Models\Task.cs" />
+    <Compile Include="Models\TimeforingRepository.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Timeforing.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Timeforing.dbml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Timeforing.mdf">
+    </Content>
+    <Content Include="App_Data\Timeforing_log.ldf">
+      <DependentUpon>Timeforing.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\images\file.gif" />
+    <Content Include="Content\images\folder-closed.gif" />
+    <Content Include="Content\images\folder.gif" />
+    <Content Include="Content\images\minus.gif" />
+    <Content Include="Content\images\plus.gif" />
+    <Content Include="Content\images\treeview-black-line.gif" />
+    <Content Include="Content\images\treeview-black.gif" />
+    <Content Include="Content\images\treeview-default-line.gif" />
+    <Content Include="Content\images\treeview-default.gif" />
+    <Content Include="Content\images\treeview-famfamfam-line.gif" />
+    <Content Include="Content\images\treeview-famfamfam.gif" />
+    <Content Include="Content\images\treeview-gray-line.gif" />
+    <Content Include="Content\images\treeview-gray.gif" />
+    <Content Include="Content\images\treeview-red-line.gif" />
+    <Content Include="Content\images\treeview-red.gif" />
+    <Content Include="Content\jquery.treeview.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery.treeview.js" />
+    <Content Include="Views\Code\CodeForm.ascx" />
+    <Content Include="Views\Code\Create.aspx" />
+    <Content Include="Views\Code\Edit.aspx" />
+    <Content Include="Views\Code\Index.aspx" />
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Home\Settings.aspx" />
+    <Content Include="Views\Project\Create.aspx" />
+    <Content Include="Views\Project\Edit.aspx" />
+    <Content Include="Views\Project\Index.aspx" />
+    <Content Include="Views\Project\Notfound.aspx" />
+    <Content Include="Views\Project\ProjectForm.ascx" />
+    <Content Include="Views\Report\Burndown.aspx" />
+    <Content Include="Views\Report\BurndownRapport.aspx" />
+    <Content Include="Views\Report\Index.aspx" />
+    <Content Include="Views\Report\TimeOversikt.aspx" />
+    <Content Include="Views\Report\TaskOversiktRapport.aspx" />
+    <Content Include="Views\Report\TaskReport.aspx" />
+    <Content Include="Views\Report\TimeOversiktRapport.aspx" />
+    <Content Include="Views\Sprint\Create.aspx" />
+    <Content Include="Views\Sprint\Edit.aspx" />
+    <Content Include="Views\Sprint\Index.aspx" />
+    <Content Include="Views\Sprint\SelectTasks.aspx" />
+    <Content Include="Views\Stories\AddTasks.aspx" />
+    <Content Include="Views\Stories\Create.aspx" />
+    <Content Include="Views\Stories\Edit.aspx" />
+    <Content Include="Views\Stories\Index.aspx" />
+    <Content Include="Views\Stories\StoryForm.ascx" />
+    <Content Include="Views\Task\Create.aspx" />
+    <Content Include="Views\Task\Edit.aspx" />
+    <Content Include="Views\Task\Index.aspx" />
+    <Content Include="Views\Task\TaskForm.ascx" />
+    <Content Include="Views\TimeReg\Index.aspx" />
+    <Content Include="Views\User\Create.aspx" />
+    <Content Include="Views\User\Edit.aspx" />
+    <Content Include="Views\User\Index.aspx" />
+    <Content Include="Views\User\UserForm.ascx" />
+    <Content Include="Web.config" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery-1.3.2.js" />
+    <Content Include="Scripts\jquery-1.3.2.min.js" />
+    <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.3.2.min-vsdoc.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Views\Shared\Error.aspx" />
+    <Content Include="Views\Shared\Site.Master" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\Timeforing.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Timeforing.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="connectionstring.home.config" />
+    <Content Include="connectionstring.ren.config" />
+    <Content Include="Views\Sprint\SprintForm.ascx" />
+    <None Include="Models\Timeforing.dbml.layout">
+      <DependentUpon>Timeforing.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56459</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

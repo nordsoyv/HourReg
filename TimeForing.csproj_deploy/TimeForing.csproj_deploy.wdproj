@@ -1,0 +1,67 @@
+﻿<!-- 
+  Microsoft Visual Studio 2008 Web Deployment Project 
+  http://go.microsoft.com/fwlink/?LinkID=104956
+
+--><Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{76AEB7CD-DB03-474C-8C1F-DF52B4505C73}</ProjectGuid>
+    <SourceWebPhysicalPath>..\TimeForing</SourceWebPhysicalPath>
+    <SourceWebProject>{DA117F6D-5FD7-45F4-8B4E-4E4D380C458A}|TimeForing\TimeForing.csproj</SourceWebProject>
+    <SourceWebVirtualPath>/TimeForing.csproj</SourceWebVirtualPath>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>.\Debug</OutputPath>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Timeforing.csproj_deploy</SingleAssemblyName>
+    <ContentAssemblyName>
+    </ContentAssemblyName>
+    <UseWebConfigReplacement>true</UseWebConfigReplacement>
+    <DeleteAppDataFolder>true</DeleteAppDataFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>.\Release</OutputPath>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>TimeForing.csproj_deploy</SingleAssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Home|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Timeforing.csproj_deploy</SingleAssemblyName>
+    <OutputPath>.\Home</OutputPath>
+    <UseWebConfigReplacement>true</UseWebConfigReplacement>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Home|AnyCPU'">
+    <WebConfigReplacementFiles Include="connectionstring.home.config">
+      <Section>connectionStrings</Section>
+    </WebConfigReplacementFiles>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <WebConfigReplacementFiles Include="connectionstring.ren.config">
+      <Section>connectionStrings</Section>
+    </WebConfigReplacementFiles>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v9.0\Microsoft.WebDeployment.targets"/>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.WebDeployment.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="BeforeMerge">
+  </Target>
+  <Target Name="AfterMerge">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
